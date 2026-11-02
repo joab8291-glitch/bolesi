@@ -220,3 +220,29 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}button{fon
 @media(min-width:1200px){.deal-track{grid-auto-columns:calc((100% - 60px)/6)}}
 @media(min-width:760px) and (max-width:1199px){.deal-track{grid-auto-columns:calc((100% - 36px)/4)}}
 @media(max-width:600px){.deal-shelf{margin-left:-6px;margin-right:-6px;padding:13px 10px 15px;border-radius:13px}.deal-heading{align-items:flex-start}.deal-heading h2{font-size:21px}.deal-see{padding:8px 11px;font-size:12px}.deal-track{grid-auto-columns:164px;gap:9px}.deal-item .pbody{padding:9px}.deal-item .pbody h3{font-size:13px;min-height:52px}.deal-item .price{font-size:15px}}
+
+
+/* Dark marketplace theme: preserve white product tiles for clear product photography */
+html,body{background:#F0F1F3}
+body{color:#EAF0F6}
+.hdr{background:rgba(12,15,21,.97)!important;border-bottom:1px solid #292D35!important;box-shadow:0 5px 24px rgba(0,0,0,.22)!important;color:#F7F9FC}
+.hdr .wrap,.hdr .wrap a,.hdr .nav a,.hdr button{color:#F0F3F7}
+.hdr .brand-logo{filter:drop-shadow(0 2px 8px rgba(0,0,0,.25))}
+.hdr .search{background:#F1F2F4;border:1px solid #E0E2E6;color:#20242A}
+.hdr .search input{color:#20242A}
+.hdr .search input::placeholder{color:#737984}
+body main,main{background:#F0F1F3}
+.hero{border-radius:0 0 18px 18px;overflow:hidden;box-shadow:0 14px 36px rgba(4,12,22,.16)}
+.hero .wrap{color:#fff}
+.sec{color:#EAF0F6}
+.sec h2,.sec h3{color:#17212D}
+.sec .row.between{color:#17212D}
+.deal-shelf{border:1px solid rgba(255,255,255,.09)}
+.flash-shelf{background:#C8193E}
+.top-deals-shelf{background:#383B41}
+.deal-item .pcard{background:#FFF!important;color:#17212D!important}
+.pcard{background:#fff;color:#17212D}
+.foot{background:#080B10!important;border-top:1px solid #242933;color:#DDE5EF}
+.foot h2,.foot h3,.foot .logo{color:#fff}
+.btn.ghost{border-color:rgba(255,255,255,.3)}
+@media(prefers-color-scheme:dark){body{color:#EAF0F6}}
