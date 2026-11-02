@@ -1,11 +1,34 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Truck, ShieldCheck, Ruler, Headset, ArrowRight, BadgeCheck, Sparkles } from 'lucide-react';
+import { Truck, ShieldCheck, Ruler, Headset, ArrowRight, BadgeCheck, Sparkles, Bath, CookingPot, SprayCan, Layers, WashingMachine, Flame, Heater, Droplets, Gem, Zap, ChefHat, Microwave, Percent, Wind, Wifi, Package } from 'lucide-react';
 import { api, asList, normProduct } from '@/lib/api';
 import { useFetch } from '@/lib/hooks';
 import ProductCard from '@/components/ProductCard';
 import { Empty } from '@/components/ui';
+
+const categoryIcons = [
+  [/bathroom|bath/i, Bath],
+  [/built.?in oven|oven/i, CookingPot],
+  [/cleaning/i, SprayCan],
+  [/collection/i, Layers],
+  [/dishwasher/i, WashingMachine],
+  [/electric cooker/i, Zap],
+  [/gas hob|gas cooker/i, Flame],
+  [/gas water heater|water heater/i, Heater],
+  [/golden diamond/i, Gem],
+  [/instant water heater/i, Droplets],
+  [/kitchen appliance/i, ChefHat],
+  [/microwave/i, Microwave],
+  [/promotion/i, Percent],
+  [/range hood/i, Wind],
+  [/smart home/i, Wifi],
+];
+
+function CategoryIcon({ name }) {
+  const Icon = categoryIcons.find(([pattern]) => pattern.test(name))?.[1] || Package;
+  return <Icon size={21} strokeWidth={1.8} aria-hidden="true" />;
+}
 
 const perks = [
   [Truck, 'Free delivery and installation', 'Door to door within Nairobi.'],
@@ -42,7 +65,7 @@ export default function Home() {
           <section className="sec" style={{ paddingBottom: 0 }}>
             <span className="eyebrow dark">FIND YOUR FIT</span><h2>Shop by category</h2>
             <div className="row wrapx" style={{ marginTop: 16 }}>
-              {cats.data.map((c) => <Link key={c.id} className="chip" href={'/products?cat=' + (c.id)}>{c.name}</Link>)}
+              {cats.data.map((c) => <Link key={c.id} className="category-chip" href={'/products?cat=' + (c.id)}><span className="category-chip-icon"><CategoryIcon name={c.name} /></span><span className="category-chip-name">{c.name}</span><ArrowRight className="category-chip-arrow" size={15} aria-hidden="true" /></Link>)}
             </div>
           </section>
         )}
