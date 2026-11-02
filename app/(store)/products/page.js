@@ -26,7 +26,7 @@ function Shop() {
   return (
     <div className="wrap sec">
       <h1 style={{ fontSize: 'clamp(30px,4vw,44px)' }}>Shop appliances</h1>
-      <form className="search" style={{ margin: '18px 0', maxWidth: 420 }} onSubmit={(e) => { e.preventDefault(); set('q', text); }}>
+      <form className="search shop-search" style={{ margin: '18px 0', maxWidth: 420 }} onSubmit={(e) => { e.preventDefault(); set('q', text); }}>
         <Search size={17} /><input value={text} onChange={(e) => setText(e.target.value)} placeholder="Search by name or model" aria-label="Search" />
       </form>
       <div className="row wrapx" style={{ marginBottom: 20 }}>
