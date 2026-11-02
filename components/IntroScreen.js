@@ -16,7 +16,6 @@ export default function IntroScreen() {
     const finish = () => {
       if (finished) return;
       finished = true;
-      try { sessionStorage.setItem('bolesiIntroSeen', '1'); } catch {}
       setVisible(false);
       if (video) { try { video.pause(); } catch {} }
     };
@@ -32,21 +31,15 @@ export default function IntroScreen() {
       setPlaying(true);
     };
 
-    let seen = false;
-    try { seen = sessionStorage.getItem('bolesiIntroSeen') === '1'; } catch {}
-    const connection = navigator.connection || {};
-    const lowData = connection.saveData || /(^|-)2g$/.test(connection.effectiveType || '');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (seen || !video || lowData || reducedMotion) {
+    if (!video) {
       finish();
       return;
     }
 
     video.addEventListener('playing', onPlaying);
     video.addEventListener('ended', finish);
-    startTimer = window.setTimeout(fallback, 3000);
-    capTimer = window.setTimeout(finish, 10000);
+    startTimer = window.setTimeout(fallback, 15000);
+    capTimer = window.setTimeout(finish, 60000);
 
     const playPromise = video.play();
     if (playPromise && playPromise.catch) playPromise.catch(fallback);
