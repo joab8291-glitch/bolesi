@@ -107,3 +107,48 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}button{fon
 @media(max-width:860px){.adm{grid-template-columns:1fr}.side{position:static;height:auto;flex-direction:row;overflow-x:auto;padding:10px}.side .logo{display:none}.side a{white-space:nowrap}.amain{padding:18px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+
+/* BOLESI storefront refresh */
+:root{--ink:#10283D;--night:#0B1F33;--flame:#1477C9;--flame-d:#075A9E;--ember:#F47B20;--mist:#F5F7FA;--steel:#637486;--line:#E0E7EE;--r:16px}
+.hdr{background:rgba(255,255,255,.96);border-bottom:1px solid #E8EDF2;box-shadow:0 4px 18px rgba(16,40,61,.045)}
+.hdr .wrap{height:78px;gap:22px}
+.brand-logo{width:128px;height:auto;max-height:46px;object-fit:contain}
+.footer-logo{width:118px;filter:brightness(0) invert(1)}
+.logo svg{display:none}
+.search{height:46px;background:#F5F7FA;border-color:#E5EAF0;flex:1;max-width:520px}
+.search:focus-within{border-color:var(--flame);box-shadow:0 0 0 3px rgba(20,119,201,.12)}
+.hero{position:relative;background:linear-gradient(112deg,#071A2C 0%,#0D3152 60%,#075A9E 100%);isolation:isolate}
+.hero .promo-strip{height:38px;background:#061321;color:#D8E8F6;display:flex;align-items:center;justify-content:space-between;padding:0 max(20px,calc((100vw - 1200px)/2));font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.hero .promo-strip span+span{font-weight:500;letter-spacing:.03em;text-transform:none;color:#AFC6D9}
+.hero .wrap{min-height:440px;padding-top:58px;padding-bottom:66px;grid-template-columns:1fr 1fr;gap:30px}
+.hero h1{font-size:clamp(42px,5vw,66px);max-width:600px;letter-spacing:-.045em}
+.hero h1 em{font-style:normal;color:#70C5FF}
+.hero p{color:#C3D5E5;max-width:440px;line-height:1.75}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.15em;font-weight:800;color:#8DD3FF;margin-bottom:18px}
+.eyebrow.dark{color:#1477C9;margin-bottom:10px}
+.hero-art{position:relative;min-height:310px;display:grid;place-items:center}
+.hero-art-glow{position:absolute;width:360px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(66,169,242,.34),rgba(12,66,111,.08) 65%,transparent 72%);filter:blur(8px)}
+.hero-art>img{position:relative;z-index:1;width:min(440px,100%);height:330px;object-fit:contain;filter:drop-shadow(0 28px 30px rgba(0,0,0,.28))}
+.hero-note{position:absolute;z-index:2;bottom:2px;left:4%;display:flex;align-items:center;gap:10px;padding:13px 16px;background:rgba(255,255,255,.96);color:#12334D;border:1px solid rgba(255,255,255,.6);border-radius:14px;box-shadow:0 14px 34px rgba(0,0,0,.18)}
+.hero-note svg{color:#0B8B58}.hero-note b,.hero-note small{display:block}.hero-note small{font-size:12px;color:#65798A;margin-top:2px}
+.hero .btn.flame{background:#F47B20;box-shadow:0 8px 22px rgba(244,123,32,.2)}
+.hero .btn.ghost{border-color:rgba(255,255,255,.42);color:#fff}
+.perks{margin-top:-28px;gap:12px}
+.perk{border-radius:15px;box-shadow:0 8px 24px rgba(16,40,61,.045);padding:18px 15px}
+.perk svg{color:#1477C9}
+.sec{padding-top:50px;padding-bottom:42px}
+.sec h2{font-size:clamp(26px,3vw,34px);color:#10283D}
+.chip{border-color:#E1E8EF;color:#28445C;padding:9px 15px}
+.chip:hover{border-color:#1477C9;color:#075A9E;background:#EFF8FF}
+.pcard{border-color:#E6EBF0;border-radius:16px;box-shadow:0 3px 14px rgba(16,40,61,.035)}
+.pcard:hover{box-shadow:0 16px 34px rgba(16,40,61,.12)}
+.pimg{aspect-ratio:1/1;background:#F7F9FB;padding:14px}
+.pimg img{object-fit:contain;mix-blend-mode:multiply}
+.pbody{padding:16px}
+.pbody h3{font-size:16px;line-height:1.35;min-height:42px}
+.price{color:#10283D;font-size:20px}
+.pbody .btn.flame{background:#1477C9}
+.foot{background:#081C2E}
+@media(max-width:860px){.hdr .wrap{height:66px}.brand-logo{width:105px}.hero .wrap{grid-template-columns:1fr;padding-top:42px;padding-bottom:48px}.hero-art{min-height:250px}.hero-art>img{height:260px}.hero .promo-strip{padding:0 20px}.hero .promo-strip span+span{display:none}.hero h1{font-size:clamp(38px,10vw,54px)}.perks{margin-top:18px}.search{display:none}}
+@media(max-width:520px){.hero .wrap{gap:12px}.hero-art{min-height:215px}.hero-art>img{height:220px}.hero-note{left:0;bottom:0;padding:10px 12px}.hero-note small{font-size:11px}.sec{padding:38px 0}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pbody{padding:11px}.pimg{padding:8px}.pbody h3{font-size:14px;min-height:58px}.pbody .btn{padding:7px 10px}.hdr .wrap{gap:8px}}
