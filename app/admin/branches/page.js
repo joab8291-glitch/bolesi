@@ -26,7 +26,7 @@ export default function Branches() {
     e.preventDefault();
     setBusy(true); setError('');
     try {
-      const body = { name: form.name, address: form.address || undefined, phone: form.phone || undefined, city: form.city || undefined };
+      const body = { name: form.name.trim(), code: (form.code || '').trim().toUpperCase(), address: form.address.trim(), phone: form.phone.trim() || undefined };
       form.id ? await api('/admin/branches/' + form.id, { method: 'PATCH', body, auth: true }) : await api('/admin/branches', { method: 'POST', body, auth: true });
       setForm(null); br.reload();
     } catch (err) { setError(err.message); }
@@ -44,13 +44,13 @@ export default function Branches() {
   return (
     <>
       <div className="row between wrapx"><div><h1>Branches and stock</h1><p className="muted">Each branch keeps its own stock count.</p></div>
-        <button className="btn flame" onClick={() => { setError(''); setForm({ name: '', address: '', phone: '', city: '' }); }}><Plus size={18} />Add branch</button></div>
+        <button className="btn flame" onClick={() => { setError(''); setForm({ name: '', code: '', address: '', phone: '' }); }}><Plus size={18} />Add branch</button></div>
       <Err>{br.error}</Err>
       <div className="row wrapx" style={{ margin: '14px 0' }}>
         {(br.data || []).map((b) => (
           <span key={b.id} className="row">
             <button className={'chip' + (sel === String(b.id) ? ' on' : '')} onClick={() => setSel(String(b.id))}>{b.name}</button>
-            <button className="icon-btn" style={{ width: 32, height: 32 }} onClick={() => { setError(''); setForm({ id: b.id, name: b.name, address: b.address || '', phone: b.phone || '', city: b.city || '' }); }} aria-label={'Edit ' + b.name}><Pencil size={14} /></button>
+            <button className="icon-btn" style={{ width: 32, height: 32 }} onClick={() => { setError(''); setForm({ id: b.id, name: b.name, code: b.code || '', address: b.address || '', phone: b.phone || '' }); }} aria-label={'Edit ' + b.name}><Pencil size={14} /></button>
           </span>
         ))}
         {br.data && !br.data.length && <span className="muted">Add your first branch, then set its stock.</span>}
@@ -71,10 +71,8 @@ export default function Branches() {
         <Modal title={form.id ? 'Edit branch' : 'Add branch'} onClose={() => setForm(null)}>
           <form className="stack" onSubmit={saveBranch}>
             <Field label="Branch name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} required />
-            <div className="cols2">
-              <Field label="City" value={form.city} onChange={(v) => setForm({ ...form, city: v })} />
-              <Field label="Phone" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
-            </div>
+            <Field label="Branch code (e.g. NAIROBI-01)" value={form.code} onChange={(v) => setForm({ ...form, code: v.toUpperCase() })} required />
+            <Field label="Phone" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
             <Field label="Address" textarea value={form.address} onChange={(v) => setForm({ ...form, address: v })} />
             <Err>{error}</Err>
             <button className="btn flame" disabled={busy}>{busy && <Spin />}Save branch</button>
