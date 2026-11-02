@@ -152,3 +152,45 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}button{fon
 .foot{background:#081C2E}
 @media(max-width:860px){.hdr .wrap{height:66px}.brand-logo{width:105px}.hero .wrap{grid-template-columns:1fr;padding-top:42px;padding-bottom:48px}.hero-art{min-height:250px}.hero-art>img{height:260px}.hero .promo-strip{padding:0 20px}.hero .promo-strip span+span{display:none}.hero h1{font-size:clamp(38px,10vw,54px)}.perks{margin-top:18px}.search{display:none}}
 @media(max-width:520px){.hero .wrap{gap:12px}.hero-art{min-height:215px}.hero-art>img{height:220px}.hero-note{left:0;bottom:0;padding:10px 12px}.hero-note small{font-size:11px}.sec{padding:38px 0}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pbody{padding:11px}.pimg{padding:8px}.pbody h3{font-size:14px;min-height:58px}.pbody .btn{padding:7px 10px}.hdr .wrap{gap:8px}}
+
+
+/* Refined motion + premium visual polish — decorative only, respects reduced-motion */
+@keyframes bo-hero-enter{from{opacity:0;transform:translate3d(0,22px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes bo-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes bo-glow{0%,100%{opacity:.62;transform:scale(.96)}50%{opacity:1;transform:scale(1.04)}}
+@keyframes bo-shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes bo-soft-pulse{0%,100%{box-shadow:0 0 0 0 rgba(20,119,201,0)}50%{box-shadow:0 0 0 5px rgba(20,119,201,.08)}}
+.hero .promo-strip{border-bottom:1px solid rgba(255,255,255,.08)}
+.hero .wrap>div:first-child{animation:bo-hero-enter .7s cubic-bezier(.2,.7,.2,1) both}
+.hero .hero-art{animation:bo-hero-enter .85s .12s cubic-bezier(.2,.7,.2,1) both}
+.hero-art-glow{animation:bo-glow 6s ease-in-out infinite}
+.hero-art>img{animation:bo-float 6s ease-in-out 1s infinite;transition:filter .35s,transform .35s}
+.hero-art>img:hover{filter:drop-shadow(0 32px 36px rgba(0,0,0,.34));transform:translateY(-4px) scale(1.025)}
+.hero-note{transition:transform .25s,box-shadow .25s}
+.hero-note:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(0,0,0,.22)}
+.btn{transition:transform .22s cubic-bezier(.2,.7,.2,1),box-shadow .22s,background-color .22s,border-color .22s}
+.btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 20px rgba(8,35,57,.14)}
+.btn.flame:hover:not(:disabled){box-shadow:0 10px 24px rgba(20,119,201,.26)}
+.icon-btn{transition:transform .2s,background .2s,border-color .2s,color .2s}
+.icon-btn:hover{transform:translateY(-2px);background:#EFF8FF;border-color:#B9DDF8;color:#075A9E}
+.nav a,.chip{transition:color .2s,background .2s,border-color .2s,transform .2s}
+.chip:hover{transform:translateY(-2px)}
+.perk{transition:transform .25s,box-shadow .25s,border-color .25s;border:1px solid transparent}
+.perk:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(16,40,61,.09);border-color:#D4E9F8}
+.pcard{overflow:hidden;transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s,border-color .28s}
+.pcard:hover{transform:translateY(-5px);border-color:#C8E2F5}
+.pimg{overflow:hidden}
+.pimg img{transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .3s}
+.pcard:hover .pimg img{transform:scale(1.045)}
+.pbody h3 a{transition:color .2s}
+.pbody h3 a:hover{color:#075A9E}
+.sec{animation:bo-hero-enter .55s ease-out both}
+.skel{background:linear-gradient(100deg,#E9EEF3 20%,#F8FAFC 38%,#E9EEF3 56%);background-size:200% 100%;animation:bo-shimmer 1.6s linear infinite}
+.search{transition:box-shadow .2s,border-color .2s,background .2s}
+.search:focus-within{background:#fff}
+.hdr{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.foot a{transition:color .2s,transform .2s}
+.foot a:hover{color:#fff;transform:translateX(3px)}
+:focus-visible{outline:3px solid #70C5FF;outline-offset:3px}
+@media(hover:none){.pcard:hover,.perk:hover,.chip:hover,.btn:hover:not(:disabled){transform:none}}
+@media(prefers-reduced-motion:reduce){html:focus-within{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
