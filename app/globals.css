@@ -361,3 +361,8 @@ img{content-visibility:auto}
 .intro-screen.is-playing .intro-screen-video{opacity:1}
 .intro-screen-shade{opacity:0;transition:opacity .35s ease}
 .intro-screen.is-playing .intro-screen-shade{opacity:1}
+
+/* Intro is the first full-screen layer; video itself must never be hidden while loading */
+.intro-screen{position:fixed!important;inset:0!important;z-index:2147483647!important;background:#000!important;display:block!important;overflow:hidden!important}
+.intro-screen-video{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;opacity:1!important;display:block!important;background:#000!important}
+.intro-screen-shade{position:absolute!important;inset:0!important;pointer-events:none!important}
