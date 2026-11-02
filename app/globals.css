@@ -599,3 +599,23 @@ body > .intro-screen{visibility:visible!important}
 .footer-shop-links .footer-help-note{margin-top:16px;color:#a8bfd0!important;font-size:12px!important}
 @media(max-width:1100px){.footer-inner-rich{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}.footer-contact-groups{display:contents}.footer-contact-group ul{gap:11px}}
 @media(max-width:600px){.footer-inner-rich{grid-template-columns:minmax(0,1fr);gap:26px;padding:32px 20px}.footer-contact-group ul{gap:12px}.footer-brand img{width:200px;max-height:92px}.footer-bottom{line-height:1.7}}
+
+/* Admin readability hotfix: enforce strong contrast for dashboard content. */
+.adm{background:linear-gradient(160deg,#07101A,#0F2A3D 60%,#0A1A27)!important;color:#E8F0F5!important}
+.adm .amain{color:#E8F0F5!important;background:transparent!important}
+.adm .amain h1,.adm .amain h2,.adm .amain h3,.adm .amain h4,
+.adm .amain p,.adm .amain label,.adm .amain strong,.adm .amain b,
+.adm .amain span,.adm .amain td,.adm .amain th,.adm .amain li{color:inherit}
+.adm .amain .muted{color:#B8C9D6!important}
+.adm .amain .glass{background:rgba(255,255,255,.09)!important;color:#F4F8FB!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:0 12px 30px rgba(0,0,0,.16)}
+.adm .amain .tbl{color:#F4F8FB!important}
+.adm .amain .tbl th{color:#B8C9D6!important}
+.adm .amain input,.adm .amain select,.adm .amain textarea{background:#fff!important;color:#17232D!important}
+.adm .amain input::placeholder,.adm .amain textarea::placeholder{color:#687784!important;opacity:1}
+.adm .amain .btn.ghost{color:#F4F8FB!important}
+.adm .amain .tag{color:#D8FBEA!important}
+.adm .amain .tag.warn{color:#FFE1D2!important}
+.adm .amain .tag.bad{color:#FFDAD7!important}
+.adm .amain .tag.info{color:#D9F1FF!important}
+@media(max-width:860px){.adm .amain{background:transparent!important}}
+
