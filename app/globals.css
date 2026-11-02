@@ -376,7 +376,7 @@ body > .intro-screen{visibility:visible!important}
 
 /* BOLESI homepage: uploaded e-commerce circuit artwork as the hero background */
 .hero{
-  background-color:#06142b!important;
+  background-color:transparent!important;
   background-image:url('/shopping.jpeg')!important;
   background-size:cover!important;
   background-position:center!important;
