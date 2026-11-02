@@ -44,7 +44,7 @@ export default function Home() {
   const cats = useFetch(() => api('/categories').then((d) => asList(d, 'categories')), []);
   return (
     <>
-      <section className="hero hero-image"><div className="hero-image-bg" role="img" aria-label="Digital shopping and online commerce background" /><div className="hero-video-shade" /><div className="promo-strip"><span>BOLESI HOME APPLIANCES</span><span>Designed for modern Kenyan homes</span></div>
+      <section className="hero hero-image"><div className="hero-image-bg" role="img" aria-label="Digital shopping and online commerce background" /><div className="hero-video-shade" />
         <div className="wrap">
           <div>
             <span className="eyebrow"><Sparkles size={15} /> SMART LIVING STARTS HERE</span><h1>Make home feel <em>exceptional.</em></h1>
@@ -104,14 +104,7 @@ export default function Home() {
           </>
         )}
       </div>
-      <footer className="site-footer">
-        <div className="footer-inner">
-          <div className="footer-brand"><img src="/bolesi-logo.png" alt="BOLESI" /><p>Thoughtfully designed home appliances for modern Kenyan homes.</p></div>
-          <div><h3>Contact BOLESI Kenya</h3><p><a href="https://www.bolesi-kenya.com/" target="_blank" rel="noreferrer">Official website: bolesi-kenya.com</a></p><p>China Square, Karen — Waterfront Mall: <a href="tel:0785778215">0785 778 215</a></p><p>China Square, Ruaka: <a href="tel:0756663880">0756 663 880</a></p><p>China Square, Two Rivers: <a href="tel:0799373265">0799 373 265</a></p><p>Email: <a href="mailto:331688723@qq.com">331688723@qq.com</a></p></div>
-          <div><h3>Customer care</h3><p>Free delivery and installation within Nairobi.</p><p>One-year product warranty.</p><p><Link href="/products">Shop all appliances</Link></p></div>
-        </div>
-        <div className="footer-bottom">© 2026 BOLESI Kenya. All rights reserved.</div>
-      </footer>
+
     </>
   );
 }
