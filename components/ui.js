@@ -30,7 +30,16 @@ export function Field({ icon: Icon, label, type = 'text', value, onChange, texta
 export const Spin = ({ size = 18 }) => <Loader2 size={size} style={{ animation: 'spin 1s linear infinite' }} />;
 
 export function Thumb({ src, alt }) {
-  return src ? <img src={src} alt={alt || ''} loading="lazy" /> : <ImageOff size={28} />;
+  const [failed, setFailed] = useState(false);
+  if (!src || failed) {
+    return (
+      <div className="thumb-fallback" role="img" aria-label={alt ? alt + ' image unavailable' : 'Product image unavailable'}>
+        <ImageOff size={28} aria-hidden="true" />
+        <span>Image unavailable</span>
+      </div>
+    );
+  }
+  return <img src={src} alt={alt || ''} loading="lazy" onError={() => setFailed(true)} />;
 }
 
 export function Empty({ children }) { return <div className="empty">{children}</div>; }
