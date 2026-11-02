@@ -1,6 +1,0 @@
-"use client";
-import {createContext,useContext,useEffect,useState} from "react";import type {Product} from "@/lib/api";
-type Line={product:Product;quantity:number};type Ctx={cart:Line[];add:(p:Product)=>void;remove:(id:string)=>void;qty:(id:string,n:number)=>void;clear:()=>void;count:number;subtotal:number};
-const C=createContext<Ctx|null>(null);
-export function StoreProvider({children}:{children:React.ReactNode}){const [cart,setCart]=useState<Line[]>([]);useEffect(()=>{try{const x=localStorage.getItem("bolesi-cart");if(x)setCart(JSON.parse(x))}catch{}},[]);useEffect(()=>{localStorage.setItem("bolesi-cart",JSON.stringify(cart))},[cart]);return <C.Provider value={{cart,add:p=>setCart(old=>{const x=old.find(v=>v.product.id===p.id);return x?old.map(v=>v.product.id===p.id?{...v,quantity:Math.min(20,v.quantity+1)}:v):[...old,{product:p,quantity:1}]}),remove:id=>setCart(old=>old.filter(v=>v.product.id!==id)),qty:(id,n)=>setCart(old=>old.map(v=>v.product.id===id?{...v,quantity:Math.max(1,Math.min(20,n))}:v)),clear:()=>setCart([]),count:cart.reduce((s,v)=>s+v.quantity,0),subtotal:cart.reduce((s,v)=>s+v.product.price*v.quantity,0)}}>{children}</C.Provider>}
-export function useStore(){const x=useContext(C);if(!x)throw new Error("StoreProvider missing");return x}
