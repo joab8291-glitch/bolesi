@@ -29,7 +29,7 @@ export default function Home() {
               <Link href="/products" className="btn ghost">Explore collection</Link>
             </div>
           </div>
-          <div className="hero-art"><div className="hero-art-glow" /><Image src="https://cdn.xuansiwei.com/liuji7923/1701137816768/tupian%203.png?x-oss-process=style%2Fpng_small" alt="Built-in gas hob" width={520} height={360} priority sizes="(max-width: 700px) 90vw, 42vw" /><div className="hero-note"><BadgeCheck size={20} /><span><b>Made for modern living</b><small>Style meets everyday performance</small></span></div></div>
+          <div className="hero-art"><div className="hero-art-glow" /><Image src="/homeappliances.jpeg" alt="BOLESI home appliances collection" width={740} height={520} priority sizes="(max-width: 700px) 94vw, 48vw" style={{ width: "100%", height: "auto", maxHeight: 520, objectFit: "contain" }} /><div className="hero-note"><BadgeCheck size={20} /><span><b>Made for modern living</b><small>Style meets everyday performance</small></span></div></div>
         </div>
       </section>
       <div className="wrap">
