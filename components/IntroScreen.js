@@ -5,50 +5,42 @@ import { usePathname } from 'next/navigation';
 export default function IntroScreen() {
   const pathname = usePathname();
   const isAdminRoute = pathname === '/admin' || pathname?.startsWith('/admin/') || pathname === '/login';
+  const [visible, setVisible] = useState(false);
 
-  // The cinematic intro is for the storefront only. Never let a blocked video
-  // cover the admin panel or the login page.
-  const [visible, setVisible] = useState(true);
-
+  // Run playback logic only when the root layout mounts. Do not attach it to
+  // pathname changes: cart/product navigation must never restart the intro.
   useEffect(() => {
-    if (isAdminRoute) {
-      setVisible(false);
-      return;
-    }
+    const isAdmin = window.location.pathname === '/admin' ||
+      window.location.pathname.startsWith('/admin/') ||
+      window.location.pathname === '/login';
+    if (isAdmin) return;
 
-    // Play the intro only once per browser tab/session, not on every route change.
     try {
-      if (sessionStorage.getItem('bolesi-intro-played') === '1') {
-        setVisible(false);
-        return;
-      }
+      if (sessionStorage.getItem('bolesi-intro-played') === '1') return;
+      // Mark before attempting playback, so rerenders/navigation cannot restart it.
       sessionStorage.setItem('bolesi-intro-played', '1');
     } catch {}
 
-    setVisible(true);
     const video = document.querySelector('.intro-screen-video');
     if (!video) return;
 
+    setVisible(true);
     const finish = () => {
       setVisible(false);
       try { video.pause(); } catch {}
     };
-    const start = () => {
-      video.classList.add('is-playing');
-    };
+    const start = () => video.classList.add('is-playing');
 
     video.addEventListener('playing', start);
     video.addEventListener('ended', finish);
-    video.play().catch(() => {
-      // If autoplay is blocked, release the cover instead of trapping the user.
-      finish();
-    });
+    video.play().catch(finish);
 
     return () => {
       video.removeEventListener('playing', start);
       video.removeEventListener('ended', finish);
+      video.pause();
     };
-  }, [pathname, isAdminRoute]);
+  }, []);
 
   if (isAdminRoute || !visible) return null;
 
