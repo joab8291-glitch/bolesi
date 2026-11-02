@@ -273,3 +273,39 @@ button:disabled{opacity:.7}
 .foot,.foot p,.foot li,.foot a{color:#DDE5EF}
 .foot a:hover{color:#fff}
 @media(max-width:600px){.hero h1{overflow-wrap:anywhere}.deal-heading h2{line-height:1.2}}
+
+
+/* Final visibility pass: stronger contrast, larger brand mark, clearer controls */
+.hdr{background:rgba(13,16,21,.98)!important;color:#F7FAFF!important}
+.hdr .wrap{min-height:76px;gap:22px}
+.hdr .logo{display:flex;align-items:center;flex:0 0 auto;min-width:96px}
+.hdr .brand-logo{width:120px!important;height:auto!important;max-height:54px;object-fit:contain;filter:none!important}
+.hdr .nav a{color:#EAF1F8!important;font-weight:650}
+.hdr .nav a.on{background:#fff!important;color:#15202B!important;border-radius:999px;padding:10px 16px}
+.hdr .icon-btn{background:#fff!important;color:#17212D!important;border:1px solid #D7E0E8!important}
+.hdr .icon-btn svg{stroke:#17212D!important}
+.hdr .search{background:#F8FAFC!important;border:1px solid #D6DFE8!important}
+.hdr .search svg{color:#344256!important;stroke:#344256!important}
+.hdr .search input{color:#182230!important;background:transparent!important}
+.hdr .search input::placeholder{color:#5B6573!important;opacity:1}
+.promo-strip{background:#061321!important;color:#DDEAF7!important}
+.promo-strip span{color:#DDEAF7!important}
+.hero{color:#fff!important}
+.hero h1,.hero p,.hero .eyebrow,.hero .hero-note,.hero .hero-note b,.hero .hero-note small{color:#fff!important}
+.hero .hero-note small{opacity:1!important}
+.hero .btn.ghost{color:#fff!important;border-color:#91AFC7!important;opacity:1!important}
+.perks .perk{background:#fff!important;color:#17212D!important}
+.perks .perk b{color:#17212D!important}
+.perks .perk span{color:#58677A!important}
+.sec .eyebrow.dark{color:#006EBB!important}
+.sec h2,.sec h3,.sec p{color:#17212D}
+.chip{color:#25415B!important;background:#fff!important;border-color:#D6E0EA!important}
+.chip.on{background:#102331!important;color:#fff!important}
+@media(max-width:700px){
+ .hdr .wrap{min-height:68px;gap:12px;padding-left:14px;padding-right:14px}
+ .hdr .brand-logo{width:100px!important;max-height:46px}
+ .hdr .logo{min-width:80px}
+ .hdr .nav{gap:6px}
+ .hdr .nav a{font-size:13px}
+ .hdr .search{min-width:0}
+}
