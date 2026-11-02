@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Flame, Search, ShoppingCart, User, LayoutDashboard } from 'lucide-react';
+import { Search, ShoppingCart, User, LayoutDashboard, ChevronDown, Headphones } from 'lucide-react';
 import { useCart } from '@/lib/cart';
 import { useAuth } from '@/lib/auth';
 
@@ -18,14 +18,14 @@ export default function Header() {
     <>
       <header className="hdr">
         <div className="wrap">
-          <Link href="/" className="logo"><Flame size={26} />BOLESI</Link>
+          <Link href="/" className="logo"><img src="/bolesi-logo.png" alt="BOLESI" className="brand-logo" /></Link>
           <nav className="nav" aria-label="Main">
             <Link href="/" className={path === '/' ? 'on' : ''}>Home</Link>
             <Link href="/products" className={path.startsWith('/products') ? 'on' : ''}>Shop</Link>
           </nav>
           <span className="grow" />
           <form className="search" onSubmit={(e) => { e.preventDefault(); router.push('/products?q=' + encodeURIComponent(q)); }}>
-            <Search size={17} /><input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search hobs, ovens, heaters" aria-label="Search products" />
+            <Search size={17} /><input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search appliances, brands and models" aria-label="Search products" />
           </form>
           {isAdmin && <Link href="/admin" className="icon-btn" aria-label="Admin dashboard"><LayoutDashboard size={18} /></Link>}
           {user ? (
