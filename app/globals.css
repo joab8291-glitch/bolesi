@@ -366,3 +366,10 @@ img{content-visibility:auto}
 .intro-screen{position:fixed!important;inset:0!important;z-index:2147483647!important;background:#000!important;display:block!important;overflow:hidden!important}
 .intro-screen-video{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;opacity:1!important;display:block!important;background:#000!important}
 .intro-screen-shade{position:absolute!important;inset:0!important;pointer-events:none!important}
+
+/* Critical: never allow the storefront to flash behind/around the intro */
+body:has(> .intro-screen) > :not(.intro-screen){visibility:hidden!important}
+body > .intro-screen{visibility:visible!important}
+.intro-screen{position:fixed!important;inset:0!important;z-index:2147483647!important;background:#000!important;display:block!important;overflow:hidden!important;visibility:visible!important}
+.intro-screen-video{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;opacity:1!important;display:block!important;background:#000!important}
+.intro-screen-shade{position:absolute!important;inset:0!important;pointer-events:none!important}
