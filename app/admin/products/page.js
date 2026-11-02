@@ -7,7 +7,7 @@ import { Field, Spin, Err, Thumb } from '@/components/ui';
 import Modal from '@/components/Modal';
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-const blank = { name: '', slug: '', price: '', sku: '', categoryId: '', description: '', imageUrl: '', originalImageUrl: '', status: 'ACTIVE' };
+const blank = { name: '', slug: '', price: '', sku: '', categoryId: '', description: '', imageUrl: '', originalImageUrl: '', status: 'ACTIVE', stockQuantity: '' };
 
 export default function Products() {
   const prods = useFetch(() => api('/admin/products', { auth: true }).then((d) => asList(d, 'products').map(normProduct)), []);
@@ -75,6 +75,11 @@ export default function Products() {
         : await api('/admin/products', { method: 'POST', body, auth: true });
       const id = form.id || (d.product || d).id;
       if (id && form.imageUrl.trim() !== (form.originalImageUrl || '')) await api('/admin/products/' + id + '/images', { method: 'PUT', body: { images: form.imageUrl.trim() ? [{ url: form.imageUrl.trim(), alt: form.name }] : [] }, auth: true });
+      if (id && stockBranch && form.stockQuantity !== '' && form.stockQuantity !== undefined) {
+        const quantity = Number(form.stockQuantity);
+        if (!Number.isInteger(quantity) || quantity < 0) throw new Error('Stock quantity must be a whole number of zero or more.');
+        await api('/admin/inventory', { method: 'PUT', auth: true, body: { branchId: stockBranch, productId: id, quantity } });
+      }
       setForm(null);
       prods.reload();
     } catch (err) { setError(err.message); }
@@ -87,7 +92,7 @@ export default function Products() {
   return (
     <>
       <div className="row between wrapx"><div><h1>Products</h1><p className="muted">Add, edit and remove what customers see in the shop.</p></div>
-        <button className="btn flame" onClick={() => { setError(''); setForm(blank); }}><Plus size={18} />Add product</button></div>
+        <button className="btn flame" onClick={() => { setError(''); setForm({ ...blank, stockQuantity: stockBranch ? '0' : '' }); }}><Plus size={18} />Add product</button></div>
       <Err>{prods.error || branches.error}</Err>
       <div className="row wrapx" style={{ marginTop: 14, alignItems: 'end' }}>
         <div style={{ minWidth: 240, maxWidth: 360, flex: 1 }}>
@@ -108,7 +113,7 @@ export default function Products() {
                 <td><b>{p.name}</b><div className="muted">{p.sku}</div></td>
                 <td>{p.categoryName || '-'}</td><td>{kes(p.price)}</td><td>{p.status || 'ACTIVE'}</td><td style={{ minWidth: 190 }}><div className="row wrapx"><input aria-label={'Stock quantity for ' + p.name} type="number" min="0" step="1" disabled={!stockBranch} value={stockValues[p.id] ?? getBranchStock(p)} onChange={(e) => setStockValues((v) => ({ ...v, [p.id]: e.target.value }))} style={{ width: 78, minWidth: 78, padding: '7px 8px', borderRadius: 8, border: '1px solid #9AAAB6', background: '#fff', color: '#17232D' }} /><button type="button" className="btn sm ghost" disabled={!stockBranch || !!stockSaving[p.id]} onClick={() => saveStock(p)}><Save size={13} />{stockSaving[p.id] ? 'Saving' : 'Save'}</button></div></td>
                 <td><div className="row" style={{ justifyContent: 'flex-end' }}>
-                  <button className="btn sm ghost" onClick={() => { setError(''); setForm({ id: p.id, name: p.name, slug: p.slug, price: p.price, sku: p.sku, categoryId: p.categoryId || '', description: p.description || '', imageUrl: p.image || '', originalImageUrl: p.image || '', status: p.status || 'ACTIVE' }); }}><Pencil size={14} />Edit</button>
+                  <button className="btn sm ghost" onClick={() => { setError(''); setForm({ id: p.id, name: p.name, slug: p.slug, price: p.price, sku: p.sku, categoryId: p.categoryId || '', description: p.description || '', imageUrl: p.image || '', originalImageUrl: p.image || '', status: p.status || 'ACTIVE', stockQuantity: stockBranch ? String(getBranchStock(p)) : '' }); }}><Pencil size={14} />Edit</button>
                   <button className="btn sm danger" onClick={() => del(p)} aria-label={'Delete ' + p.name}><Trash2 size={14} /></button>
                 </div></td>
               </tr>
@@ -129,6 +134,14 @@ export default function Products() {
               <option value="">No category</option>
               {asList(cats.data, 'categories').map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
             </Field>
+            <div className="cols2">
+              <Field label="Stock branch" value={stockBranch} onChange={(v) => { setStockBranch(v); setForm((current) => current ? { ...current, stockQuantity: '' } : current); }}>
+                <option value="">Choose branch…</option>
+                {(branches.data || []).map((b) => <option key={b.id} value={String(b.id)}>{b.name}</option>)}
+              </Field>
+              <Field label="Stock quantity" type="number" min="0" value={form.stockQuantity} onChange={set('stockQuantity')} placeholder="Enter available units" />
+            </div>
+            <p className="muted" style={{ fontSize: 12 }}>Stock is saved for the selected branch. Choose a branch before saving a quantity.</p>
             <Field label="Description" textarea value={form.description} onChange={set('description')} placeholder="Size, cutout, features, warranty" />
             <div className="fld">
               <span className="fld-l">Product image</span>
