@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Truck, ShieldCheck, Ruler, Headset, ArrowRight, BadgeCheck, Sparkles } from 'lucide-react';
 import { api, asList, normProduct } from '@/lib/api';
 import { useFetch } from '@/lib/hooks';
@@ -18,7 +19,7 @@ export default function Home() {
   const cats = useFetch(() => api('/categories').then((d) => asList(d, 'categories')), []);
   return (
     <>
-      <section className="hero hero-video"><video className="hero-video-bg" autoPlay muted loop playsInline preload="auto" poster="/bolesi-logo.png" aria-hidden="true"><source src="/bolesi-intro.mp4" type="video/mp4" /></video><div className="hero-video-shade" /><div className="promo-strip"><span>BOLESI HOME APPLIANCES</span><span>Designed for modern Kenyan homes</span></div>
+      <section className="hero hero-image"><div className="hero-image-bg" role="img" aria-label="Digital shopping and online commerce background" /><div className="hero-video-shade" /><div className="promo-strip"><span>BOLESI HOME APPLIANCES</span><span>Designed for modern Kenyan homes</span></div>
         <div className="wrap">
           <div>
             <span className="eyebrow"><Sparkles size={15} /> SMART LIVING STARTS HERE</span><h1>Make home feel <em>exceptional.</em></h1>
@@ -28,7 +29,7 @@ export default function Home() {
               <Link href="/products" className="btn ghost">Explore collection</Link>
             </div>
           </div>
-          <div className="hero-art"><div className="hero-art-glow" /><img src="https://cdn.xuansiwei.com/liuji7923/1701137816768/tupian%203.png?x-oss-process=style%2Fpng_small" alt="Built-in gas hob" /><div className="hero-note"><BadgeCheck size={20} /><span><b>Made for modern living</b><small>Style meets everyday performance</small></span></div></div>
+          <div className="hero-art"><div className="hero-art-glow" /><Image src="https://cdn.xuansiwei.com/liuji7923/1701137816768/tupian%203.png?x-oss-process=style%2Fpng_small" alt="Built-in gas hob" width={520} height={360} priority sizes="(max-width: 700px) 90vw, 42vw" /><div className="hero-note"><BadgeCheck size={20} /><span><b>Made for modern living</b><small>Style meets everyday performance</small></span></div></div>
         </div>
       </section>
       <div className="wrap">
@@ -78,6 +79,14 @@ export default function Home() {
           </>
         )}
       </div>
+      <footer className="site-footer">
+        <div className="footer-inner">
+          <div className="footer-brand"><img src="/bolesi-logo.png" alt="BOLESI" /><p>Thoughtfully designed home appliances for modern Kenyan homes.</p></div>
+          <div><h3>Contact BOLESI Kenya</h3><p><a href="https://www.bolesi-kenya.com/" target="_blank" rel="noreferrer">Official website: bolesi-kenya.com</a></p><p>China Square, Karen — Waterfront Mall: <a href="tel:0785778215">0785 778 215</a></p><p>China Square, Ruaka: <a href="tel:0756663880">0756 663 880</a></p><p>China Square, Two Rivers: <a href="tel:0799373265">0799 373 265</a></p><p>Email: <a href="mailto:331688723@qq.com">331688723@qq.com</a></p></div>
+          <div><h3>Customer care</h3><p>Free delivery and installation within Nairobi.</p><p>One-year product warranty.</p><p><Link href="/products">Shop all appliances</Link></p></div>
+        </div>
+        <div className="footer-bottom">© 2026 BOLESI Kenya. All rights reserved.</div>
+      </footer>
     </>
   );
 }
