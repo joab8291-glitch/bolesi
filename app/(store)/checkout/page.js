@@ -37,13 +37,14 @@ export default function Checkout() {
     e.preventDefault();
     setError('');
     if (fulfil === 'DELIVERY' && !f.address.trim()) return setError('Enter your delivery address.');
-    if (fulfil === 'PICKUP' && !f.branchId) return setError('Choose the branch where you will collect.');
+    if (!f.branchId) return setError(fulfil === 'PICKUP' ? 'Choose the branch where you will collect.' : 'Choose a dispatch branch for delivery.');
     setBusy(true);
     try {
       const body = {
-        customerName: f.name, name: f.name, phone: f.phone, customerPhone: f.phone, email: f.email || undefined,
-        fulfilment: fulfil, fulfillmentType: fulfil, deliveryAddress: fulfil === 'DELIVERY' ? f.address : undefined,
-        notes: f.notes || undefined, branchId: fulfil === 'PICKUP' ? f.branchId : undefined,
+        customerName: f.name, customerPhone: f.phone, customerEmail: f.email || undefined,
+        fulfilment: fulfil === 'PICKUP' ? 'COLLECTION' : 'DELIVERY',
+        deliveryAddress: fulfil === 'DELIVERY' ? { address: f.address.trim(), notes: f.notes.trim() || undefined } : undefined,
+        branchId: f.branchId,
         paymentMethod: pay,
         items: items.map((i) => ({ productId: i.id, quantity: i.qty })),
       };
@@ -85,12 +86,13 @@ export default function Checkout() {
                 <Field icon={MapPin} label="Delivery address" textarea value={f.address} onChange={set('address')} placeholder="Estate, street, building, house number" />
                 <Field label="Notes for the driver (optional)" value={f.notes} onChange={set('notes')} />
               </>
-            ) : branches.length ? (
-              <Field icon={Store} label="Collection branch" value={f.branchId} onChange={set('branchId')}>
+            ) : null}
+            {branches.length ? (
+              <Field icon={Store} label={fulfil === 'PICKUP' ? 'Collection branch' : 'Dispatch branch'} value={f.branchId} onChange={set('branchId')} required>
                 <option value="">Choose a branch</option>
                 {branches.map((b) => <option key={b.id} value={b.id}>{b.name}{b.city ? ', ' + b.city : ''}</option>)}
               </Field>
-            ) : <Empty>No branches are set up for collection yet.</Empty>}
+            ) : <Empty>No branches are configured yet. Please contact BOLESI before placing an order.</Empty>}
           </div>
           <div className="panel stack">
             <h3>Payment</h3>
