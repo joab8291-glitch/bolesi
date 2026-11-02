@@ -18,7 +18,7 @@ export default function Home() {
   const cats = useFetch(() => api('/categories').then((d) => asList(d, 'categories')), []);
   return (
     <>
-      <section className="hero"><div className="promo-strip"><span>BOLESI HOME APPLIANCES</span><span>Designed for modern Kenyan homes</span></div>
+      <section className="hero hero-video"><video className="hero-video-bg" autoPlay muted loop playsInline preload="auto" poster="/bolesi-logo.png" aria-hidden="true"><source src="/bolesi-intro.mp4" type="video/mp4" /></video><div className="hero-video-shade" /><div className="promo-strip"><span>BOLESI HOME APPLIANCES</span><span>Designed for modern Kenyan homes</span></div>
         <div className="wrap">
           <div>
             <span className="eyebrow"><Sparkles size={15} /> SMART LIVING STARTS HERE</span><h1>Make home feel <em>exceptional.</em></h1>
