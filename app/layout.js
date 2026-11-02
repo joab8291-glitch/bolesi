@@ -14,6 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={head.variable + ' ' + body.variable}>
+      <head><link rel="preload" as="video" href="/bolesi-intro.mp4" type="video/mp4" /></head>
       <body><IntroScreen /><Providers>{children}</Providers></body>
     </html>
   );
