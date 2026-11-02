@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Eye, EyeOff, ImageOff, Loader2 } from 'lucide-react';
+import { Eye, EyeOff, ImageOff, Loader2, Microwave, CookingPot, WashingMachine } from 'lucide-react';
 
 export function Field({ icon: Icon, label, type = 'text', value, onChange, textarea, children, ...p }) {
   const [show, setShow] = useState(false);
@@ -31,11 +31,17 @@ export const Spin = ({ size = 18 }) => <Loader2 size={size} style={{ animation: 
 
 export function Thumb({ src, alt }) {
   const [failed, setFailed] = useState(false);
+  const label = String(alt || '').toLowerCase();
+  const isMicrowave = label.includes('microwave');
+  const isDishwasher = label.includes('dishwasher');
+  const isCooktop = label.includes('ceramic stove') || label.includes('electric cooker') || label.includes('electric hob');
+  const FallbackIcon = isMicrowave ? Microwave : isDishwasher ? WashingMachine : isCooktop ? CookingPot : ImageOff;
+  const fallbackLabel = isMicrowave ? 'Microwave' : isDishwasher ? 'Dishwasher' : isCooktop ? 'Electric cooker' : 'Product photo';
   if (!src || failed) {
     return (
-      <div className="thumb-fallback" role="img" aria-label={alt ? alt + ' image unavailable' : 'Product image unavailable'}>
-        <ImageOff size={28} aria-hidden="true" />
-        <span>Image unavailable</span>
+      <div className="thumb-fallback" role="img" aria-label={alt ? alt + ' photo not available yet' : 'Product photo not available yet'}>
+        <FallbackIcon size={34} aria-hidden="true" />
+        <span>{fallbackLabel} photo coming soon</span>
       </div>
     );
   }
