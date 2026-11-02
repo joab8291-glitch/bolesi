@@ -21,12 +21,12 @@ export default function Products() {
     e.preventDefault();
     setBusy(true); setError('');
     try {
-      const body = { name: form.name, slug: form.slug || slugify(form.name), price: Number(form.price), sku: form.sku || undefined, categoryId: form.categoryId || undefined, description: form.description || undefined };
+      const body = { name: form.name.trim(), price: Number(form.price), sku: form.sku.trim(), model: form.sku.trim(), brand: 'BOLESI', categoryId: form.categoryId || undefined, description: form.description.trim() || undefined };
       const d = form.id
         ? await api('/admin/products/' + form.id, { method: 'PATCH', body, auth: true })
         : await api('/admin/products', { method: 'POST', body, auth: true });
       const id = form.id || (d.product || d).id;
-      if (form.imageUrl.trim() && id) await api('/admin/products/' + id + '/images', { method: 'POST', body: { url: form.imageUrl.trim(), alt: form.name }, auth: true });
+      if (form.imageUrl.trim() && id) await api('/admin/products/' + id + '/images', { method: 'POST', body: { images: [{ url: form.imageUrl.trim(), alt: form.name }] }, auth: true });
       setForm(null);
       prods.reload();
     } catch (err) { setError(err.message); }
@@ -66,7 +66,7 @@ export default function Products() {
             <Field label="Product name" value={form.name} onChange={set('name')} required placeholder="Built-in 4 gas stainless hob" />
             <div className="cols2">
               <Field label="Price (KES)" type="number" min="0" value={form.price} onChange={set('price')} required />
-              <Field label="Model / SKU" value={form.sku} onChange={set('sku')} placeholder="BLS-ML-8402G" />
+              <Field label="Model / SKU" value={form.sku} onChange={set('sku')} required placeholder="BLS-ML-8402G" />
             </div>
             <Field label="Category" value={form.categoryId} onChange={set('categoryId')}>
               <option value="">No category</option>
