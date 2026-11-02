@@ -354,3 +354,10 @@ img{content-visibility:auto}
 /* Product image layout: reserve space to avoid page jumps and lazy-load below-fold images */
 .product-card img,.deal-item img{height:auto;max-width:100%;object-fit:contain}
 @media(max-width:600px){.intro-screen-logo{width:150px}.intro-screen-loading{white-space:normal;text-align:center;width:calc(100% - 36px);justify-content:center}}
+
+/* Match Webazi's true pre-homepage video loader: server-rendered cover first, video only once playback starts */
+.intro-screen{background:#000!important;opacity:1;visibility:visible}
+.intro-screen-video{opacity:0;transition:opacity .35s ease}
+.intro-screen.is-playing .intro-screen-video{opacity:1}
+.intro-screen-shade{opacity:0;transition:opacity .35s ease}
+.intro-screen.is-playing .intro-screen-shade{opacity:1}
