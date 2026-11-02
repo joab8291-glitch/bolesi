@@ -1,26 +1,35 @@
 import Link from 'next/link';
-import { Phone, MapPin, Mail } from 'lucide-react';
+import { MapPin, Mail, ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="foot">
-      <div className="wrap cols">
-        <div>
-          <div className="logo"><img src="/bolesi-logo.png" alt="BOLESI" className="brand-logo footer-logo" /></div>
-          <p>Gas hobs, ovens, water heaters, water purifiers, smart locks and more. Free one-year warranty, free measuring visit, and 24/7 after-sales service in Kenya.</p>
+    <footer className="site-footer">
+      <div className="footer-inner">
+        <div className="footer-brand">
+          <Link href="/" aria-label="BOLESI home" className="footer-logo-link">
+            <img src="/bolesi-logo.png" alt="BOLESI" />
+          </Link>
+          <p>Thoughtfully designed home appliances for modern Kenyan homes.</p>
+          <p className="footer-support">Quality appliances. Reliable support. Everyday comfort.</p>
         </div>
         <div>
-          <h4>Shop</h4>
-          <Link href="/products">All products</Link><Link href="/cart">Your cart</Link><Link href="/login">Sign in</Link>
+          <h3>Contact BOLESI Kenya</h3>
+          <p><a href="https://www.bolesi-kenya.com/" target="_blank" rel="noreferrer">Official website <ArrowUpRight size={14} style={{display:'inline',verticalAlign:'middle'}} /></a></p>
+          <p><MapPin size={15} style={{display:'inline',verticalAlign:'middle',marginRight:7}} />China Square, Karen — Waterfront Mall: <a href="tel:0785778215">0785 778 215</a></p>
+          <p><MapPin size={15} style={{display:'inline',verticalAlign:'middle',marginRight:7}} />China Square, Ruaka: <a href="tel:0756663880">0756 663 880</a></p>
+          <p><MapPin size={15} style={{display:'inline',verticalAlign:'middle',marginRight:7}} />China Square, Two Rivers: <a href="tel:0799373265">0799 373 265</a></p>
+          <p><Mail size={15} style={{display:'inline',verticalAlign:'middle',marginRight:7}} /><a href="mailto:331688723@qq.com">331688723@qq.com</a></p>
         </div>
         <div>
-          <h4>Visit a branch</h4>
-          <a href="tel:+254116484838"><Phone size={14} style={{ display: 'inline', marginRight: 6 }} />Nakuru Flagship +254 116 484 838</a>
-          <a href="tel:0116896528"><MapPin size={14} style={{ display: 'inline', marginRight: 6 }} />Karibu Square, Kilimani 0116 896 528</a>
-          <a href="tel:0748245880"><MapPin size={14} style={{ display: 'inline', marginRight: 6 }} />Hi Home, Garden City 0748 245 880</a>
+          <h3>Shop & support</h3>
+          <p><Link href="/products">Shop all appliances</Link></p>
+          <p><Link href="/cart">View your cart</Link></p>
+          <p><Link href="/login">Customer sign in</Link></p>
+          <p>Free delivery and installation within Nairobi.</p>
+          <p>One-year product warranty.</p>
         </div>
       </div>
-      <div className="wrap" style={{ marginTop: 28, fontSize: 13 }}>© 2026 BOLESI Company Limited. All rights reserved.</div>
+      <div className="footer-bottom">© 2026 BOLESI Kenya. All rights reserved.</div>
     </footer>
   );
 }
