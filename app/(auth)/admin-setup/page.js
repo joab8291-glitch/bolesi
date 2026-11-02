@@ -30,7 +30,7 @@ export default function AdminSetup() {
           <Field icon={KeyRound} label="Setup token" type="password" value={f.token} onChange={set('token')} required />
           <Field icon={User} label="Full name" value={f.name} onChange={set('name')} required />
           <Field icon={Mail} label="Admin email" type="email" value={f.email} onChange={set('email')} required />
-          <Field icon={Lock} label="Password" type="password" value={f.password} onChange={set('password')} required minLength={8} />
+          <Field icon={Lock} label="Password" type="password" value={f.password} onChange={set('password')} required minLength={12} />
           <Err>{error}</Err>
           <button className="btn flame" disabled={busy}>{busy && <Spin />}Create super admin</button>
         </form>
