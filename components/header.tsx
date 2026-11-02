@@ -1,0 +1,2 @@
+"use client";import Link from "next/link";import {useStore} from "@/components/store";
+export default function Header(){const {count}=useStore();return <header className="header"><Link href="/" className="brand"><i>B</i><span>BOLESI<small>HOME · LIVING · SMART</small></span></Link><nav><Link href="/shop">Shop</Link><a href="/#collections">Collections</a><a href="/#about">About</a><a href="/#contact">Contact</a></nav><div><Link href="/admin" className="admin">Admin</Link><Link href="/cart" className="bag">Bag ({count})</Link></div></header>}
