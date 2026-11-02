@@ -25,6 +25,8 @@ const categoryIcons = [
   [/smart home/i, Wifi],
 ];
 
+const categoryOrder = ['Bathroom', 'Built-in Ovens', 'Cleaning', 'Collections', 'Dishwashers', 'Electric Cookers', 'Gas Hobs & Cookers', 'Gas Water Heaters', 'Golden Diamond Series', 'Instant Water Heaters', 'Kitchen Appliances', 'Microwaves', 'Promotions', 'Range Hoods', 'Smart Home Devices'];
+
 function CategoryIcon({ name }) {
   const Icon = categoryIcons.find(([pattern]) => pattern.test(name))?.[1] || Package;
   return <Icon size={21} strokeWidth={1.8} aria-hidden="true" />;
@@ -65,7 +67,7 @@ export default function Home() {
           <section className="sec" style={{ paddingBottom: 0 }}>
             <span className="eyebrow dark">FIND YOUR FIT</span><h2>Shop by category</h2>
             <div className="row wrapx" style={{ marginTop: 16 }}>
-              {cats.data.map((c) => <Link key={c.id} className="category-chip" href={'/products?cat=' + (c.id)}><span className="category-chip-icon"><CategoryIcon name={c.name} /></span><span className="category-chip-name">{c.name}</span><ArrowRight className="category-chip-arrow" size={15} aria-hidden="true" /></Link>)}
+              {[...cats.data].sort((a, b) => { const ai = categoryOrder.findIndex((name) => name.toLowerCase() === a.name?.toLowerCase()); const bi = categoryOrder.findIndex((name) => name.toLowerCase() === b.name?.toLowerCase()); return (ai < 0 ? 999 : ai) - (bi < 0 ? 999 : bi); }).map((c) => <Link key={c.id} className="category-chip" href={'/products?cat=' + c.id}><span className="category-chip-icon"><CategoryIcon name={c.name} /></span><span className="category-chip-name">{c.name}</span><ArrowRight className="category-chip-arrow" size={16} aria-hidden="true" /></Link>)}
             </div>
           </section>
         )}
