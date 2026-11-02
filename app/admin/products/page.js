@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Plus, Pencil, Trash2, ImagePlus } from 'lucide-react';
 import { api, asList, kes, normProduct } from '@/lib/api';
 import { useFetch } from '@/lib/hooks';
@@ -15,7 +15,32 @@ export default function Products() {
   const [form, setForm] = useState(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [imageBusy, setImageBusy] = useState(false);
+  const [dragging, setDragging] = useState(false);
+  const fileInput = useRef(null);
   const set = (k) => (v) => setForm((s) => ({ ...s, [k]: v, ...(k === 'name' && !s.id ? { slug: slugify(v) } : {}) }));
+
+  async function chooseImage(file) {
+    if (!file) return;
+    setError('');
+    if (!file.type.startsWith('image/')) { setError('Choose an image file (JPG, PNG, WebP, or GIF).'); return; }
+    if (file.size > 3 * 1024 * 1024) { setError('Image is too large. Choose an image smaller than 3 MB.'); return; }
+    setImageBusy(true);
+    try {
+      const dataUrl = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result || ''));
+        reader.onerror = () => reject(new Error('Could not read this image. Please try another file.'));
+        reader.readAsDataURL(file);
+      });
+      setForm((current) => ({ ...current, imageUrl: dataUrl }));
+    } catch (err) {
+      setError(err.message || 'Could not load image.');
+    } finally {
+      setImageBusy(false);
+      if (fileInput.current) fileInput.current.value = '';
+    }
+  }
 
   async function save(e) {
     e.preventDefault();
@@ -73,7 +98,30 @@ export default function Products() {
               {asList(cats.data, 'categories').map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
             </Field>
             <Field label="Description" textarea value={form.description} onChange={set('description')} placeholder="Size, cutout, features, warranty" />
-            <Field icon={ImagePlus} label="Product image URL (editable)" value={form.imageUrl} onChange={set('imageUrl')} placeholder="https://..." />
+            <div className="fld">
+              <span className="fld-l">Product image</span>
+              <div
+                role="button"
+                tabIndex={0}
+                aria-label="Upload product image: drop an image here or choose a file"
+                onClick={() => fileInput.current?.click()}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.current?.click(); } }}
+                onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+                onDragLeave={(e) => { e.preventDefault(); setDragging(false); }}
+                onDrop={(e) => { e.preventDefault(); setDragging(false); chooseImage(e.dataTransfer.files?.[0]); }}
+                style={{ border: '2px dashed ' + (dragging ? '#38B6FF' : 'rgba(184,201,214,.55)'), borderRadius: 14, padding: 18, textAlign: 'center', cursor: 'pointer', background: dragging ? 'rgba(56,182,255,.12)' : 'rgba(255,255,255,.035)' }}
+              >
+                {form.imageUrl ? (
+                  <img src={form.imageUrl} alt="Product image preview" style={{ width: 150, height: 120, objectFit: 'contain', margin: '0 auto 12px', borderRadius: 8, background: '#fff' }} />
+                ) : (
+                  <ImagePlus size={30} style={{ margin: '0 auto 8px', color: '#B8C9D6' }} />
+                )}
+                <strong style={{ display: 'block', color: '#F4F8FB' }}>{imageBusy ? 'Reading image…' : dragging ? 'Drop image to upload' : 'Drag and drop an image here'}</strong>
+                <span style={{ display: 'block', color: '#B8C9D6', fontSize: 13, marginTop: 4 }}>or click to choose a file · JPG, PNG, WebP or GIF · Max 3 MB</span>
+                <input ref={fileInput} type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden onChange={(e) => chooseImage(e.target.files?.[0])} />
+              </div>
+              <Field icon={ImagePlus} label="Or use an image URL" value={form.imageUrl.startsWith('data:') ? '' : form.imageUrl} onChange={set('imageUrl')} placeholder="https://..." />
+            </div>
             <Field label="Publishing status" value={form.status} onChange={set('status')}>
               <option value="DRAFT">Draft — hidden from customers</option>
               <option value="ACTIVE">Active — visible in shop</option>
