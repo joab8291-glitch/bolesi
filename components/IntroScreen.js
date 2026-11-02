@@ -16,6 +16,15 @@ export default function IntroScreen() {
       return;
     }
 
+    // Play the intro only once per browser tab/session, not on every route change.
+    try {
+      if (sessionStorage.getItem('bolesi-intro-played') === '1') {
+        setVisible(false);
+        return;
+      }
+      sessionStorage.setItem('bolesi-intro-played', '1');
+    } catch {}
+
     setVisible(true);
     const video = document.querySelector('.intro-screen-video');
     if (!video) return;
