@@ -373,3 +373,15 @@ body > .intro-screen{visibility:visible!important}
 .intro-screen{position:fixed!important;inset:0!important;z-index:2147483647!important;background:#000!important;display:block!important;overflow:hidden!important;visibility:visible!important}
 .intro-screen-video{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;opacity:1!important;display:block!important;background:#000!important}
 .intro-screen-shade{position:absolute!important;inset:0!important;pointer-events:none!important}
+
+/* BOLESI homepage: uploaded e-commerce circuit artwork as the hero background */
+.hero{
+  background-color:#06142b!important;
+  background-image:linear-gradient(90deg,rgba(3,10,28,.82) 0%,rgba(3,17,42,.62) 52%,rgba(0,42,93,.18) 100%),url('/shopping.jpg')!important;
+  background-size:cover!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+}
+.hero .promo-strip{background:rgba(3,10,28,.82)!important}
+.hero p{color:#f1f6ff!important;text-shadow:0 1px 3px rgba(0,0,0,.65)}
+.hero h1{text-shadow:0 2px 10px rgba(0,0,0,.38)}
