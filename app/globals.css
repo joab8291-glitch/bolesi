@@ -246,3 +246,30 @@ body main,main{background:#F0F1F3}
 .foot h2,.foot h3,.foot .logo{color:#fff}
 .btn.ghost{border-color:rgba(255,255,255,.3)}
 @media(prefers-color-scheme:dark){body{color:#EAF0F6}}
+
+
+/* Contrast and visibility repair for dark marketplace styling */
+:root{color-scheme:light}
+body{color:#202A35}
+p,li,small,label,.muted,.subtle{color:#4B5563}
+main .sec{color:#202A35}
+main .sec h1,main .sec h2,main .sec h3,main .sec h4{color:#17212D}
+main .sec p,main .sec .muted,main .sec .subtle{color:#4B5563}
+.hero,.hero h1,.hero h2,.hero h3,.hero p,.hero .eyebrow,.hero .hero-note{color:#fff}
+.hero .muted,.hero .subtle{color:#E1E8F0}
+.hdr,.hdr *{color:#F7F9FC}
+.hdr .search,.hdr .search *{color:#20242A}
+.hdr .search input::placeholder{color:#626B76}
+.flash-shelf,.flash-shelf h1,.flash-shelf h2,.flash-shelf h3,.flash-shelf p,.flash-shelf span:not(.live-dot){color:#fff}
+.top-deals-shelf,.top-deals-shelf h1,.top-deals-shelf h2,.top-deals-shelf h3,.top-deals-shelf p,.top-deals-shelf span:not(.live-dot){color:#fff}
+.deal-shelf .deal-see,.deal-shelf .deal-see *{color:#263849}
+.deal-item .pcard,.deal-item .pcard *,.pcard,.pcard *{color:#202A35}
+.pcard .muted,.pcard .subtle,.deal-item .pcard .muted,.deal-item .pcard .subtle{color:#596575}
+.pcard a:hover,.deal-item .pcard a:hover{color:#075A9E}
+.pcard .btn,.deal-item .pcard .btn{color:#fff}
+input,textarea,select{color:#20242A}
+input::placeholder,textarea::placeholder{color:#687280;opacity:1}
+button:disabled{opacity:.7}
+.foot,.foot p,.foot li,.foot a{color:#DDE5EF}
+.foot a:hover{color:#fff}
+@media(max-width:600px){.hero h1{overflow-wrap:anywhere}.deal-heading h2{line-height:1.2}}
