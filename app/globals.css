@@ -563,3 +563,21 @@ body > .intro-screen{visibility:visible!important}
  .cart-line .qty button{width:29px;height:30px}
  .cart-line .qty span{min-width:22px}
 }
+
+
+/* Mobile shop search and navigation refinements */
+@media(max-width:860px){
+ .shop-search{display:flex!important;width:100%;max-width:none!important;min-width:0;height:46px;margin:16px 0!important;border-radius:13px}
+ .shop-search input{min-width:0}
+ .mnav{padding:10px 16px;gap:8px;scrollbar-width:none}
+ .mnav::-webkit-scrollbar{display:none}
+ .mnav .chip{flex:0 0 auto;padding:8px 14px;min-height:36px}
+}
+@media(max-width:600px){
+ .category-chip-grid{gap:10px!important}
+ .sec .row.between{align-items:flex-start;gap:12px}
+ .sec .row.between>.btn{white-space:nowrap;font-size:12px;padding:9px 11px}
+ .grid{align-items:stretch}
+ .pcard{min-width:0}
+ .pbody h3{overflow-wrap:anywhere}
+}
