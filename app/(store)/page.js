@@ -14,7 +14,7 @@ const perks = [
 ];
 
 export default function Home() {
-  const prods = useFetch(() => api('/products').then((d) => asList(d, 'products').map(normProduct).slice(0, 8)), []);
+  const prods = useFetch(() => api('/products').then((d) => asList(d, 'products').map(normProduct).slice(0, 18)), []);
   const cats = useFetch(() => api('/categories').then((d) => asList(d, 'categories')), []);
   return (
     <>
@@ -54,6 +54,29 @@ export default function Home() {
           {prods.error && <Empty>We could not load products. {prods.error}</Empty>}
           {prods.data && prods.data.length === 0 && <Empty>No products yet. Add the first one from the admin dashboard.</Empty>}
         </section>
+
+        {prods.data && prods.data.length > 0 && (
+          <>
+            <section className="deal-shelf flash-shelf">
+              <div className="deal-heading">
+                <div><span className="deal-kicker">BOLESI SPECIAL SELECTION</span><h2>Featured deals <span className="live-pill"><span className="live-dot" /> Shop now</span></h2></div>
+                <Link href="/products" className="deal-see">See all <ArrowRight size={16} /></Link>
+              </div>
+              <div className="deal-track">
+                {prods.data.slice(0, 8).map((p) => <div className="deal-item" key={'featured-' + p.id}><ProductCard p={p} /></div>)}
+              </div>
+            </section>
+            <section className="deal-shelf top-deals-shelf">
+              <div className="deal-heading">
+                <div><span className="deal-kicker">THE BOLESI COLLECTION</span><h2>Home essentials & top picks</h2></div>
+                <Link href="/products" className="deal-see">Explore all <ArrowRight size={16} /></Link>
+              </div>
+              <div className="deal-track">
+                {prods.data.slice(8, 16).length ? prods.data.slice(8, 16).map((p) => <div className="deal-item" key={'top-' + p.id}><ProductCard p={p} /></div>) : prods.data.slice(0, 8).map((p) => <div className="deal-item" key={'top-repeat-' + p.id}><ProductCard p={p} /></div>)}
+              </div>
+            </section>
+          </>
+        )}
       </div>
     </>
   );
