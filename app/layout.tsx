@@ -1,3 +1,0 @@
-import type {Metadata} from "next";import "./globals.css";import Header from "@/components/header";import {StoreProvider} from "@/components/store";
-export const metadata:Metadata={title:"BOLESI | Thoughtful Living. Smarter Homes.",description:"Considered kitchen appliances and smart-home solutions from BOLESI."};
-export default function Layout({children}:{children:React.ReactNode}){return <html lang="en"><body><StoreProvider><Header/>{children}<footer className="footer"><div><b>BOLESI</b><p>Thoughtful living. Smarter homes.</p></div><div><a href="/shop">Shop</a><a href="/#about">Our story</a><a href="/#contact">Contact</a></div><small>© {new Date().getFullYear()} BOLESI COMPANY LIMITED</small></footer></StoreProvider></body></html>}
