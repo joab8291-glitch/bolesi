@@ -2,68 +2,43 @@
 import { useEffect, useState } from 'react';
 
 export default function IntroScreen() {
-  // Render the cover on the server so the store is never visible before the intro.
+  // This component is rendered as part of the root layout HTML, before the storefront.
+  // Keep the cover in place until the intro video finishes; never reveal the homepage first.
   const [visible, setVisible] = useState(true);
-  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const video = document.querySelector('.intro-screen-video');
-    let finished = false;
-    let started = false;
-    let startTimer;
-    let capTimer;
+    if (!video) return;
 
     const finish = () => {
-      if (finished) return;
-      finished = true;
       setVisible(false);
-      if (video) { try { video.pause(); } catch {} }
+      try { video.pause(); } catch {}
     };
-    const fallback = () => {
-      if (started || finished) return;
-      if (video) video.remove();
-      finish();
-    };
-    const onPlaying = () => {
-      if (started || finished) return;
-      started = true;
-      clearTimeout(startTimer);
-      setPlaying(true);
+    const start = () => {
+      video.classList.add('is-playing');
     };
 
-    if (!video) {
-      finish();
-      return;
-    }
-
-    video.addEventListener('playing', onPlaying);
+    video.addEventListener('playing', start);
     video.addEventListener('ended', finish);
-    startTimer = window.setTimeout(fallback, 15000);
-    capTimer = window.setTimeout(finish, 60000);
-
-    const playPromise = video.play();
-    if (playPromise && playPromise.catch) playPromise.catch(fallback);
+    video.play().catch(() => {
+      // Keep the full-screen cover visible if autoplay is blocked or the asset fails.
+      // This prevents the homepage flashing before the intro has played.
+      video.classList.add('intro-playback-blocked');
+    });
 
     return () => {
-      clearTimeout(startTimer);
-      clearTimeout(capTimer);
-      if (video) {
-        video.removeEventListener('playing', onPlaying);
-        video.removeEventListener('ended', finish);
-      }
+      video.removeEventListener('playing', start);
+      video.removeEventListener('ended', finish);
     };
   }, []);
 
   if (!visible) return null;
   return (
-    <div className={'intro-screen' + (playing ? ' is-playing' : '')} role="status" aria-label="BOLESI welcome">
+    <div className="intro-screen" aria-label="BOLESI intro">
       <video className="intro-screen-video" autoPlay muted playsInline preload="auto" disablePictureInPicture aria-hidden="true">
         <source src="/bolesi-intro.mp4" type="video/mp4" />
       </video>
       <div className="intro-screen-shade" />
-      <img src="/bolesi-logo.png" alt="BOLESI" className="intro-screen-logo" />
-      <div className="intro-screen-loading"><span /> Preparing your home appliance experience</div>
-      <button className="intro-skip" onClick={() => setVisible(false)}>Skip intro</button>
     </div>
   );
 }
