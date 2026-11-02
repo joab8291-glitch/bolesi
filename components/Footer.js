@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { Flame, Phone, MapPin } from 'lucide-react';
+import { Phone, MapPin, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
     <footer className="foot">
       <div className="wrap cols">
         <div>
-          <div className="logo" style={{ color: '#fff' }}><Flame size={24} />BOLESI</div>
+          <div className="logo"><img src="/bolesi-logo.png" alt="BOLESI" className="brand-logo footer-logo" /></div>
           <p>Gas hobs, ovens, water heaters, water purifiers, smart locks and more. Free one-year warranty, free measuring visit, and 24/7 after-sales service in Kenya.</p>
         </div>
         <div>
