@@ -645,3 +645,9 @@ body > .intro-screen{visibility:visible!important}
 .hero-image-bg{background-image:none!important;overflow:hidden!important}
 .hero{background-image:none!important}
 .hero-image-bg>img{display:block!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important}
+
+
+/* Lighthouse: keep the LCP hero artwork immediately paintable. Avoid entrance/floating animations and transformed stacking contexts on first-screen content. */
+.hero-image-bg{transform:none!important}
+.hero .wrap>div:first-child,.hero .hero-art,.hero-art-glow,.hero-art>img{animation:none!important}
+.hero-art>img{transition:none!important;filter:none!important}
