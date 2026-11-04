@@ -45,31 +45,8 @@ export function Thumb({ src, alt }) {
   const isGasHeater = label.includes('gas water heater');
   const isStorageHeater = label.includes('storage') && label.includes('water heater');
   const isWaterHeater = label.includes('water heater');
-  const fallbackSrc = isMicrowave
-    ? 'https://image.made-in-china.com/202f0j00gNdczvwJUyqn/20L-Solo-Microwave-Oven-Mechanical-Countertop-Microwave-Table-Microwave.webp'
-    : isDishwasher
-      ? 'https://www.joegraham.co.uk/media/misc/matrix_mdi6011_1341249_34-0100-0341.png'
-      : isCooktop
-        ? 'https://s.alicdn.com/@sc04/kf/Hb2c1984cb8ad478eae1877366cfc9550w/Induction-and-Ceramic-Mix-Hob-Touch-Screen-2-Plate-Black-Crystal-Plate-Cooker-Induction-Hob-with-Ceramic-Top.jpg'
-        : isSmartLock
-          ? 'https://cdn.xuansiwei.com/liuji7923/1701137581371/tupian%2016.png?x-oss-process=style%2Fpng_small'
-          : isOven
-            ? 'https://cdn.xuansiwei.com/liuji7923/1776104519469/tupian2_r__1446-1412_c__0c0c0d_.png?x-oss-process=style%2Fpng_small'
-            : isRangeHood
-              ? 'https://cdn.xuansiwei.com/liuji7923/1701137762425/tupian%206.png?x-oss-process=style%2Fpng_small'
-              : isPurifier
-                ? 'https://static.wixstatic.com/media/e1931c_a6936a88ed874cafb077319532286bec~mv2.webp/v1/fill/w_640%2Ch_640%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/e1931c_a6936a88ed874cafb077319532286bec~mv2.webp'
-                : isSmartToilet
-                  ? 'https://hwell-wc.com/uppic/i8-1.jpg'
-                  : isGasHeater
-                    ? null
-                    : isStorageHeater
-                      ? 'https://static.euroterm24.pl/GA/L0/70/-0/1-/05/00/00/0/BIG.jpg?hash=284a4d0215878bf6ebed94a4664dd04c'
-                      : isWaterHeater
-                        ? 'https://cdn.xuansiwei.com/liuji7923/1701137528586/tupian%2020.png?x-oss-process=style%2Fpng_small'
-                        : isGasHob
-                          ? 'https://cdn.xuansiwei.com/liuji7923/1701137816768/tupian%203.png?x-oss-process=style%2Fpng_small'
-                          : null;
+  // Use the built-in product placeholder instead of fragile third-party fallback images.
+  const fallbackSrc = null;
   const FallbackIcon = isMicrowave ? Microwave : isDishwasher ? WashingMachine : isCooktop || isGasHob ? CookingPot : ImageOff;
   const fallbackLabel = isMicrowave ? 'Microwave' : isDishwasher ? 'Dishwasher' : isCooktop ? 'Electric cooker' : isGasHob ? 'Cooker hob' : 'Product photo';
 
