@@ -44,7 +44,7 @@ export default function Home() {
   const cats = useFetch(() => api('/categories').then((d) => asList(d, 'categories')), []);
   return (
     <>
-      <section className="hero hero-image"><div className="hero-image-bg" role="img" aria-label="Digital shopping and online commerce background" /><div className="hero-video-shade" />
+      <section className="hero hero-image"><div className="hero-image-bg"><Image src="/shopping.jpeg" alt="" fill priority fetchPriority="high" sizes="100vw" quality={75} style={{ objectFit: "cover", objectPosition: "center" }} /></div><div className="hero-video-shade" />
         <div className="wrap">
           <div>
             <span className="eyebrow"><Sparkles size={15} /> SMART LIVING STARTS HERE</span><h1>Make home feel <em>exceptional.</em></h1>
