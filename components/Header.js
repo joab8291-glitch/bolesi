@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Search, ShoppingCart, User, LayoutDashboard, ChevronDown, Headphones } from 'lucide-react';
@@ -18,7 +19,7 @@ export default function Header() {
     <>
       <header className="hdr">
         <div className="wrap">
-          <Link href="/" className="logo"><img src="/bolesi-logo.png" alt="BOLESI" className="brand-logo" width="220" height="100" fetchPriority="high" /></Link>
+          <Link href="/" className="logo"><Image src="/bolesi-logo.png" alt="BOLESI" className="brand-logo" width={220} height={100} priority quality={75} sizes="180px" /></Link>
           <nav className="nav" aria-label="Main">
             <Link href="/" className={path === '/' ? 'on' : ''}>Home</Link>
             <Link href="/products" className={path.startsWith('/products') ? 'on' : ''}>Shop</Link>
