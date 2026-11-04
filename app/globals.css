@@ -334,7 +334,7 @@ button:disabled{opacity:.7}
 .footer-brand img{width:150px;height:auto;max-height:62px;object-fit:contain;filter:none!important;background:#fff;border-radius:8px;padding:8px}
 .footer-bottom{text-align:center;border-top:1px solid rgba(255,255,255,.12);padding:16px 20px;color:#c3d0dc;font-size:12px}
 .hero-image .hero-art img{object-fit:contain;max-width:100%;height:auto}
-img{content-visibility:auto}
+
 @media(max-width:760px){.footer-inner{grid-template-columns:1fr;gap:22px;padding:30px 20px}.hero-image-bg{background-position:55% center}}
 
 
@@ -639,3 +639,9 @@ body > .intro-screen{visibility:visible!important}
 .flash-shelf .live-pill{background:#fff!important;color:#8F1230!important}
 .flash-shelf .live-pill *{color:#8F1230!important}
 .flash-shelf .live-pill .live-dot{background:#087A45!important}
+
+
+/* LCP: load the homepage hero artwork as a prioritized responsive image, not a CSS background. */
+.hero-image-bg{background-image:none!important;overflow:hidden!important}
+.hero{background-image:none!important}
+.hero-image-bg>img{display:block!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important}
