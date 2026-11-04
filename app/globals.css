@@ -630,3 +630,12 @@ body > .intro-screen{visibility:visible!important}
 .skel{animation:none!important;background:#e9eef3!important}
 .live-dot{animation:none!important;box-shadow:0 0 0 3px rgba(21,167,101,.12)!important}
 @media(prefers-reduced-motion:reduce){.hero .wrap>div:first-child,.hero .hero-art,.hero-art-glow,.hero-art>img,.sec{animation:none!important;transform:none!important}}
+
+
+/* Lighthouse accessibility contrast fixes (WCAG AA) */
+.hero .btn.flame{background:#963B00!important;color:#fff!important}
+.hero .btn.flame:hover:not(:disabled){background:#7A3000!important}
+.flash-shelf .deal-kicker{color:#fff!important;opacity:1!important}
+.flash-shelf .live-pill{background:#fff!important;color:#8F1230!important}
+.flash-shelf .live-pill *{color:#8F1230!important}
+.flash-shelf .live-pill .live-dot{background:#087A45!important}
