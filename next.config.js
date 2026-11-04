@@ -10,6 +10,5 @@ module.exports = {
     ],
     minimumCacheTTL: 2592000,
     formats: ['image/avif', 'image/webp'],
-    qualities: [60, 75],
   },
 };
