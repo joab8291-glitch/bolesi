@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { MapPin, Phone, Mail, ArrowUpRight, ShieldCheck, Truck, Wrench } from 'lucide-react';
 
 const contactGroups = [
@@ -43,7 +44,7 @@ export default function Footer() {
       <div className="footer-inner footer-inner-rich">
         <div className="footer-brand">
           <Link href="/" aria-label="BOLESI home" className="footer-logo-link">
-            <img src="/bolesi-logo.png" alt="BOLESI" width="220" height="100" loading="lazy" />
+            <Image src="/bolesi-logo.png" alt="BOLESI" width={220} height={100} loading="lazy" quality={75} sizes="200px" />
           </Link>
           <p>Home appliances designed for everyday comfort in Kenyan homes.</p>
           <p className="footer-support">Shop with confidence, with local product support.</p>
