@@ -619,3 +619,14 @@ body > .intro-screen{visibility:visible!important}
 .adm .amain .tag.info{color:#D9F1FF!important}
 @media(max-width:860px){.adm .amain{background:transparent!important}}
 
+
+
+/* Lighthouse refinements: higher text contrast and avoid paint-heavy decorative motion. */
+:root{--flame:#0967A8;--flame-d:#07558D;--steel:#526273}
+.btn.flame{background:linear-gradient(135deg,#0967A8,#07558D);color:#fff}
+.btn.flame:hover{background:#064B7D}
+.burner:before{filter:drop-shadow(0 0 8px var(--flame)) drop-shadow(0 0 18px var(--flame-d))}
+@keyframes flick{0%,100%{opacity:.86;transform:scale(.985)}50%{opacity:1;transform:scale(1)}}
+.skel{animation:none!important;background:#e9eef3!important}
+.live-dot{animation:none!important;box-shadow:0 0 0 3px rgba(21,167,101,.12)!important}
+@media(prefers-reduced-motion:reduce){.hero .wrap>div:first-child,.hero .hero-art,.hero-art-glow,.hero-art>img,.sec{animation:none!important;transform:none!important}}
