@@ -74,7 +74,7 @@ export function Thumb({ src, alt }) {
   const fallbackLabel = isMicrowave ? 'Microwave' : isDishwasher ? 'Dishwasher' : isCooktop ? 'Electric cooker' : isGasHob ? 'Cooker hob' : 'Product photo';
 
   if ((!src || failed) && fallbackSrc && !fallbackFailed) {
-    return <img src={fallbackSrc} alt={alt || ''} loading="lazy" onError={() => setFallbackFailed(true)} />;
+    return <img src={fallbackSrc} alt={alt || ''} width="640" height="480" loading="lazy" decoding="async" onError={() => setFallbackFailed(true)} />;
   }
   if (!src || failed) {
     return (
@@ -84,7 +84,7 @@ export function Thumb({ src, alt }) {
       </div>
     );
   }
-  return <img src={src} alt={alt || ''} loading="lazy" onError={() => setFailed(true)} />;
+  return <img src={src} alt={alt || ''} width="640" height="480" loading="lazy" decoding="async" onError={() => setFailed(true)} />;
 }
 
 export function Empty({ children }) { return <div className="empty">{children}</div>; }
