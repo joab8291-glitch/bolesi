@@ -62,7 +62,7 @@ export function Thumb({ src, alt }) {
                 : isSmartToilet
                   ? 'https://hwell-wc.com/uppic/i8-1.jpg'
                   : isGasHeater
-                    ? 'https://www.noritz.com.cn/upload/product/202504091702580026.png'
+                    ? null
                     : isStorageHeater
                       ? 'https://static.euroterm24.pl/GA/L0/70/-0/1-/05/00/00/0/BIG.jpg?hash=284a4d0215878bf6ebed94a4664dd04c'
                       : isWaterHeater
