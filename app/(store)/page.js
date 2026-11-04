@@ -40,11 +40,11 @@ const perks = [
 ];
 
 export default function Home() {
-  const prods = useFetch(() => api('/products').then((d) => asList(d, 'products').map(normProduct).slice(0, 8)), []);
+  const prods = useFetch(() => api('/products?limit=8').then((d) => asList(d, 'products').map(normProduct).slice(0, 8)), []);
   const cats = useFetch(() => api('/categories').then((d) => asList(d, 'categories')), []);
   return (
     <>
-      <section className="hero hero-image"><div className="hero-image-bg"><Image src="/shopping.jpeg" alt="" fill priority fetchPriority="high" sizes="100vw" quality={75} style={{ objectFit: "cover", objectPosition: "center" }} /></div><div className="hero-video-shade" />
+      <section className="hero hero-image"><div className="hero-image-bg"><Image src="/shopping.jpeg" alt="" fill unoptimized priority fetchPriority="high" sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} /></div><div className="hero-video-shade" />
         <div className="wrap">
           <div>
             <span className="eyebrow"><Sparkles size={15} /> SMART LIVING STARTS HERE</span><h1>Make home feel <em>exceptional.</em></h1>
