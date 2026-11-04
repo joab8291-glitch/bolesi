@@ -18,7 +18,7 @@ export default function Header() {
     <>
       <header className="hdr">
         <div className="wrap">
-          <Link href="/" className="logo"><img src="/bolesi-logo.png" alt="BOLESI" className="brand-logo" /></Link>
+          <Link href="/" className="logo"><img src="/bolesi-logo.png" alt="BOLESI" className="brand-logo" width="220" height="100" fetchPriority="high" /></Link>
           <nav className="nav" aria-label="Main">
             <Link href="/" className={path === '/' ? 'on' : ''}>Home</Link>
             <Link href="/products" className={path.startsWith('/products') ? 'on' : ''}>Shop</Link>
