@@ -13,7 +13,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={head.variable + ' ' + body.variable}>
-      <body><head><link rel="preconnect" href="https://bolesi-backend.onrender.com" crossOrigin="anonymous" /><link rel="dns-prefetch" href="https://bolesi-backend.onrender.com" /></head><Providers>{children}</Providers></body>
+      <head>
+        <link rel="preconnect" href="https://bolesi-backend.onrender.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://bolesi-backend.onrender.com" />
+      </head>
+      <body><Providers>{children}</Providers></body>
     </html>
   );
 }
