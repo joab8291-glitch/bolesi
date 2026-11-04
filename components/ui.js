@@ -51,6 +51,12 @@ export function Thumb({ src, alt }) {
   const FallbackIcon = isMicrowave ? Microwave : isDishwasher ? WashingMachine : isCooktop || isGasHob ? CookingPot : ImageOff;
   const fallbackLabel = isMicrowave ? 'Microwave' : isDishwasher ? 'Dishwasher' : isCooktop ? 'Electric cooker' : isGasHob ? 'Cooker hob' : 'Product photo';
 
+  const isInlineImage = typeof src === 'string' && /^data:image\/(?:png|jpe?g|webp|gif);base64,/i.test(src);
+
+  if (isInlineImage && !failed) {
+    return <img src={src} alt={alt || ''} width="640" height="480" loading="lazy" decoding="async" onError={() => setFailed(true)} style={{ width: "100%", height: "100%", objectFit: "contain" }} />;
+  }
+
   if ((!src || failed) && fallbackSrc && !fallbackFailed) {
     return <img src={fallbackSrc} alt={alt || ''} width="640" height="480" loading="lazy" decoding="async" onError={() => setFallbackFailed(true)} />;
   }
