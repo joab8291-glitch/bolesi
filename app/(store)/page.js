@@ -54,7 +54,7 @@ export default function Home() {
               <Link href="/products" className="btn ghost">Explore collection</Link>
             </div>
           </div>
-          <div className="hero-art"><div className="hero-art-glow" /><Image src="/homeappliances.jpeg" alt="BOLESI home appliances collection" width={740} height={520} priority sizes="(max-width: 700px) 94vw, 48vw" style={{ width: "100%", height: "auto", maxHeight: 520, objectFit: "contain" }} /><div className="hero-note"><BadgeCheck size={20} /><span><b>Made for modern living</b><small>Style meets everyday performance</small></span></div></div>
+          <div className="hero-art"><div className="hero-art-glow" /><Image src="/homeappliances.jpeg" alt="BOLESI home appliances collection" width={740} height={520} loading="lazy" sizes="(max-width: 700px) 94vw, 48vw" quality={65} style={{ width: "100%", height: "auto", maxHeight: 520, objectFit: "contain" }} /><div className="hero-note"><BadgeCheck size={20} /><span><b>Made for modern living</b><small>Style meets everyday performance</small></span></div></div>
         </div>
       </section>
       <div className="wrap">
