@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 import { Eye, EyeOff, ImageOff, Loader2, Microwave, CookingPot, WashingMachine } from 'lucide-react';
 
 export function Field({ icon: Icon, label, type = 'text', value, onChange, textarea, children, ...p }) {
@@ -61,7 +62,7 @@ export function Thumb({ src, alt }) {
       </div>
     );
   }
-  return <img src={src} alt={alt || ''} width="640" height="480" loading="lazy" decoding="async" onError={() => setFailed(true)} />;
+  return <Image src={src} alt={alt || ''} width={640} height={480} sizes="(max-width: 640px) 46vw, (max-width: 1024px) 30vw, 285px" quality={60} loading="lazy" onError={() => setFailed(true)} style={{ width: "100%", height: "100%", objectFit: "contain" }} />;
 }
 
 export function Empty({ children }) { return <div className="empty">{children}</div>; }
